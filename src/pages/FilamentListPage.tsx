@@ -41,7 +41,7 @@ function priorityBadgeStyle(priority: FilamentPriority) {
 
 export default function FilamentListPage() {
   const navigate = useNavigate();
-  const { data: filaments = [], isLoading, mutate } = useSWR('filaments', fetchFilaments);
+  const { data: filaments = [], isLoading } = useSWR('filaments', fetchFilaments);
   const { data: thresholds = {} } = useSWR('filament_settings', fetchThresholds);
 
   const [search, setSearch] = useState('');
