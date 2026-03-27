@@ -32,9 +32,8 @@ export default function SettingsPage() {
   async function saveThreshold(key: string, value: string) {
     const n = parseInt(value, 10);
     if (isNaN(n) || n < 0) return;
-    const { data: { user } } = await supabase.auth.getUser();
     await supabase.from('filament_settings')
-      .upsert({ user_id: user!.id, key, value: String(n) }, { onConflict: 'user_id,key' });
+      .upsert({ key, value: String(n) }, { onConflict: 'key' });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   }
